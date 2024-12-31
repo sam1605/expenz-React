@@ -1,0 +1,128 @@
+/* Summary Cards */
+.summary-card {
+    @apply bg-white p-6 rounded-lg shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-md;
+  }
+  
+  .summary-card-header {
+    @apply flex items-center justify-between mb-4;
+  }
+  
+  .summary-card-title {
+    @apply text-sm font-medium text-gray-600;
+  }
+  
+  .summary-card-value {
+    @apply text-2xl font-bold text-gray-900;
+  }
+  
+  .summary-card-icon {
+    @apply text-gray-400;
+  }
+  
+  /* Form Styles */
+  .expense-form {
+    @apply space-y-4;
+  }
+  
+  .form-group {
+    @apply space-y-1;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  .form-select {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-white;
+  }
+  
+  /* Chart Container */
+  .chart-container {
+    @apply bg-white p-4 rounded-lg shadow-sm border border-gray-200 h-[300px];
+  }
+  
+  /* Expense Table */
+  .expense-table {
+    @apply min-w-full divide-y divide-gray-200;
+  }
+  
+  .expense-table th {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+  
+  .expense-table td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+  }
+  
+  .expense-table tr {
+    @apply hover:bg-gray-50;
+  }
+  
+  .expense-row {
+    @apply transition-colors duration-150;
+  }
+  
+  .delete-btn {
+    @apply text-red-600 hover:text-red-900 font-medium;
+  }
+  
+  /* Category Badge */
+  .category-badge {
+    @apply px-2 py-1 text-xs font-medium rounded-full;
+  }
+  
+  .category-badge-general {
+    @apply bg-gray-100 text-gray-800;
+  }
+  
+  .category-badge-food {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .category-badge-transport {
+    @apply bg-blue-100 text-blue-800;
+  }
+  
+  .category-badge-entertainment {
+    @apply bg-purple-100 text-purple-800;
+  }
+  
+  .category-badge-bills {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  .category-badge-shopping {
+    @apply bg-pink-100 text-pink-800;
+  }
+  
+  /* Amount Display */
+  .amount-display {
+    @apply font-mono font-medium;
+  }
+  
+  .amount-positive {
+    @apply text-green-600;
+  }
+  
+  .amount-negative {
+    @apply text-red-600;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 640px) {
+    .expense-table th {
+      @apply px-4 py-2;
+    }
+    
+    .expense-table td {
+      @apply px-4 py-2;
+    }
+    
+    .summary-card {
+      @apply p-4;
+    }
+  }
