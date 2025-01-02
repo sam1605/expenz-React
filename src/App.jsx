@@ -10,8 +10,8 @@ const App = () => {
     return savedExpenses ? JSON.parse(savedExpenses) : [];
   });
 
-  const categories = ['General', 'Food', 'Transport', 'Entertainment', 'Bills', 'Shopping'];
-
+  const categories = ['Bills', 'Grocery', 'Fuel', 'Subscriptions', 'Swiggy/Zomato', 'Online-Shopping', 'Eating Out'];
+  const accounts = ['HDFC', 'HDFC CC', 'ICICI', 'Kotak', 'Cash'];
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(expenses));
   }, [expenses]);
@@ -38,6 +38,7 @@ const App = () => {
         <ExpenseForm
           onAddExpense={addExpense}
           categories={categories}
+          accounts={accounts}
         />
         <ExpenseChart expenses={expenses} />
       </div>

@@ -2,28 +2,30 @@ import React, { useState } from 'react';
 import { PlusCircle } from 'lucide-react';
 import './styles/ExpenseTracker.css';
 
-const ExpenseForm = ({ onAddExpense, categories }) => {
+const ExpenseForm = ({ onAddExpense, categories,accounts }) => {
   const [newExpense, setNewExpense] = useState({
     description: '',
     amount: '',
     category: 'General',
+    account:'HDFC CC',
     date: new Date().toISOString().split('T')[0]
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!newExpense.description || !newExpense.amount) return;
-    
+
     onAddExpense({
       ...newExpense,
       id: Date.now(),
       amount: parseFloat(newExpense.amount)
     });
-    
+
     setNewExpense({
       description: '',
       amount: '',
       category: 'General',
+      account:'HDFC CC',
       date: new Date().toISOString().split('T')[0]
     });
   };
@@ -39,7 +41,7 @@ const ExpenseForm = ({ onAddExpense, categories }) => {
             className="form-input"
             placeholder="Enter description"
             value={newExpense.description}
-            onChange={(e) => setNewExpense({...newExpense, description: e.target.value})}
+            onChange={(e) => setNewExpense({ ...newExpense, description: e.target.value })}
           />
         </div>
 
@@ -50,7 +52,7 @@ const ExpenseForm = ({ onAddExpense, categories }) => {
             className="form-input"
             placeholder="Enter amount"
             value={newExpense.amount}
-            onChange={(e) => setNewExpense({...newExpense, amount: e.target.value})}
+            onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })}
           />
         </div>
 
@@ -59,7 +61,7 @@ const ExpenseForm = ({ onAddExpense, categories }) => {
           <select
             className="form-select"
             value={newExpense.category}
-            onChange={(e) => setNewExpense({...newExpense, category: e.target.value})}
+            onChange={(e) => setNewExpense({ ...newExpense, category: e.target.value })}
           >
             {categories.map(category => (
               <option key={category} value={category}>{category}</option>
@@ -68,12 +70,24 @@ const ExpenseForm = ({ onAddExpense, categories }) => {
         </div>
 
         <div className="form-group">
+          <label className="form-label">Account</label>
+          <select
+            className="form-select"
+            value={newExpense.account}
+            onChange={(e) => setNewExpense({ ...newExpense, category: e.target.value })}
+          >
+            {accounts.map(category => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+        </div>
+        <div className="form-group">
           <label className="form-label">Date</label>
           <input
             type="date"
             className="form-input"
             value={newExpense.date}
-            onChange={(e) => setNewExpense({...newExpense, date: e.target.value})}
+            onChange={(e) => setNewExpense({ ...newExpense, date: e.target.value })}
           />
         </div>
 
