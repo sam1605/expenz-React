@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect("mongodb+srv://prod_db_access:passwordQQ@cluster0.vzzcj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect("mongodb+srv://prod_db_access:Dev109accessdb@cluster0.vzzcj.mongodb.net/expenz?retryWrites=true&w=majority")
   .then(() => {
     console.log("Connected to MongoDB");
   })

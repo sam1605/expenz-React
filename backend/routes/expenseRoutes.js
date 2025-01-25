@@ -3,15 +3,18 @@ const router = express.Router();
 const Expense = require("../models/expenseModel");
 
 // Add a new expense
-router.post("/", async (req, res) => {
+// POST /api/expenses
+router.post('/', async (req, res) => {
   try {
-    const newExpense = new Expense(req.body);
-    const savedExpense = await newExpense.save();
-    res.status(201).json(savedExpense);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+    const { title, amount, date, category } = req.body; // Extract data from request body
+    const newExpense = new Expense({ title, amount, date , category }); // Create a new expense document
+    const savedExpense = await newExpense.save(); // Save to the database
+    res.status(201).json(savedExpense); // Respond with the saved document
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
+
 
 // Get all expenses
 router.get("/", async (req, res) => {
@@ -24,3 +27,13 @@ router.get("/", async (req, res) => {
 });
 
 module.exports = router;
+
+
+// curl -X POST http://localhost:5001/api/expenseRoutes \
+// -H "Content-Type: application/json" \
+// -d '{
+//   "title": "Groceries",
+//   "amount": 150,
+//   "date": "2025-01-25"
+//   "category":"test"
+// }'
