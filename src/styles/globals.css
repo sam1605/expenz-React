@@ -145,7 +145,122 @@
     font-size: 0.75rem;
     font-weight: 500;
   }
-  
+/* Floating Navbar */
+.navbar {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  height: 50px;
+  background-color: #010101; /* Blue background */
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Navbar Content */
+.navbar-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.navbar-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Menu List */
+.menu {
+  display: flex;
+  gap: 15px;
+}
+
+.menu li {
+  list-style: none;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.menu li a:hover {
+  background-color: #0056b3;
+}
+
+/* Hamburger Menu Button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  z-index: 51;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.hamburger .line.open:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger .line.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger .line.open:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Hidden Menu for Mobile */
+.menu {
+  transition: all 0.3s;
+}
+
+.menu.open {
+  display: block;
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  background-color: #000000;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Content Styling */
+.content {
+  padding: 70px 20px 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
   .category-badge-general { background-color: #f3f4f6; }
   .category-badge-food { background-color: #def7ec; color: #03543f; }
   .category-badge-transport { background-color: #e1effe; color: #1e429f; }
