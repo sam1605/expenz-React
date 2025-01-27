@@ -7,6 +7,11 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({ message: "Something broke!" });
+});
+
 
 // MongoDB connection
 mongoose.connect("mongodb+srv://prod_db_access:Dev109accessdb@cluster0.vzzcj.mongodb.net/expenz?retryWrites=true&w=majority")

@@ -7,28 +7,28 @@ const ExpenseForm = ({ categories, accounts }) => {
   const [newExpense, setNewExpense] = useState({
     description: '',
     amount: '',
-    category: 'General',
-    account: 'HDFC CC',
+    category: categories[0] || 'General',
+    account: accounts[0] || 'HDFC CC',
     date: new Date().toISOString().split('T')[0],
   });
 
-  const [loading, setLoading] = useState(false); // State for loader
-  const [error, setError] = useState(null); // State for errors
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation check
+    // Validate required fields
     if (!newExpense.description || !newExpense.amount) {
-      alert("Description and Amount are required!");
+      setError('Description and Amount are required!');
       return;
     }
 
-    try {
-      setLoading(true); // Show loader
-      setError(null); // Reset error state
+    setError(null); // Reset error state
+    setLoading(true); // Show loader
 
-      // Make the API call to the backend
+    try {
+      // Make the API call
       const response = await axios.post('http://localhost:5001/api/expenses', {
         title: newExpense.description,
         description: newExpense.description,
@@ -40,12 +40,12 @@ const ExpenseForm = ({ categories, accounts }) => {
 
       console.log('Expense added:', response.data);
 
-      // Clear the form fields after successful submission
+      // Reset form after successful submission
       setNewExpense({
         description: '',
         amount: '',
-        category: 'General',
-        account: 'HDFC CC',
+        category: categories[0] || 'General',
+        account: accounts[0] || 'HDFC CC',
         date: new Date().toISOString().split('T')[0],
       });
 
@@ -69,7 +69,9 @@ const ExpenseForm = ({ categories, accounts }) => {
             className="form-input"
             placeholder="Enter description"
             value={newExpense.description}
-            onChange={(e) => setNewExpense({ ...newExpense, description: e.target.value })}
+            onChange={(e) =>
+              setNewExpense({ ...newExpense, description: e.target.value })
+            }
           />
         </div>
 
@@ -80,7 +82,9 @@ const ExpenseForm = ({ categories, accounts }) => {
             className="form-input"
             placeholder="Enter amount"
             value={newExpense.amount}
-            onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })}
+            onChange={(e) =>
+              setNewExpense({ ...newExpense, amount: e.target.value })
+            }
           />
         </div>
 
@@ -89,7 +93,9 @@ const ExpenseForm = ({ categories, accounts }) => {
           <select
             className="form-select"
             value={newExpense.category}
-            onChange={(e) => setNewExpense({ ...newExpense, category: e.target.value })}
+            onChange={(e) =>
+              setNewExpense({ ...newExpense, category: e.target.value })
+            }
           >
             {categories.map((category) => (
               <option key={category} value={category}>
@@ -104,7 +110,9 @@ const ExpenseForm = ({ categories, accounts }) => {
           <select
             className="form-select"
             value={newExpense.account}
-            onChange={(e) => setNewExpense({ ...newExpense, account: e.target.value })}
+            onChange={(e) =>
+              setNewExpense({ ...newExpense, account: e.target.value })
+            }
           >
             {accounts.map((account) => (
               <option key={account} value={account}>
@@ -120,7 +128,9 @@ const ExpenseForm = ({ categories, accounts }) => {
             type="date"
             className="form-input"
             value={newExpense.date}
-            onChange={(e) => setNewExpense({ ...newExpense, date: e.target.value })}
+            onChange={(e) =>
+              setNewExpense({ ...newExpense, date: e.target.value })
+            }
           />
         </div>
 
@@ -129,7 +139,13 @@ const ExpenseForm = ({ categories, accounts }) => {
           className="btn btn-primary w-full flex items-center justify-center gap-2"
           disabled={loading}
         >
-          {loading ? 'Adding...' : <><PlusCircle className="h-5 w-5" /> Add Expense</>}
+          {loading ? (
+            'Adding...'
+          ) : (
+            <>
+              <PlusCircle className="h-5 w-5" /> Add Expense
+            </>
+          )}
         </button>
       </form>
 
